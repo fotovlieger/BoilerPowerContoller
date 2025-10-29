@@ -3,7 +3,7 @@
 
 ## Harware
 - simple electric boiler
-- cheap thyristor based power controller with display and buttons
+- cheap thyristor based [power controller] with display and buttons
 - Esp32 microcontroller
 - temperature sensor to monitor water temperature
 
