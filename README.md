@@ -3,7 +3,7 @@
 
 ## Harware
 - A simple electric boiler (no electronics, just a heating element and 'mechanical' thermostat)
-- A cheap [thyristor voltage regulator](voltageregulator) with display and buttons
+- A cheap [thyristor voltage regulator](voltageregulator.md) with display and buttons
 - Esp32 microcontroller
 - temperature sensor to monitor water temperature
 
