@@ -12,10 +12,10 @@ namespace my_component {
   void MyComponent::loop() {
 
         // Convert to enum
-    if (mode_->state == "Off") power_mode_ = POWER_OFF;
-    else if (mode_->state == "On") power_mode_ = POWER_ON;
-    else if (mode_->state == "Auto") power_mode_ = POWER_AUTO;
-    else if (mode_->state == "Manual") power_mode_ = POWER_MANUAL;
+    if (mode_->current_option() == "Off") power_mode_ = POWER_OFF;
+    else if (mode_->current_option() == "On") power_mode_ = POWER_ON;
+    else if (mode_->current_option() == "Auto") power_mode_ = POWER_AUTO;
+    else if (mode_->current_option() == "Manual") power_mode_ = POWER_MANUAL;
 
     if (power_mode_ == POWER_OFF) {
       power_setpoint_ = 0.;
@@ -31,7 +31,7 @@ namespace my_component {
     }
     static int cnt=0;
     if (cnt++%100==0) {
-        ESP_LOGI("loop", "mode=%d, setp=%f, delay=%d", power_mode_, power_setpoint_, delay_us_ );
+       // ESP_LOGI("loop", "mode=%d, setp=%f, delay=%d", power_mode_, power_setpoint_, delay_us_ );
     }
   }
 
@@ -42,14 +42,14 @@ void MyComponent::set_power(number::Number *num) {
 }
 
 void MyComponent::set_mode(select::Select *sel) {
-    ESP_LOGI(TAG, "set_mode() called — current mode='%s'", sel->state.c_str());
+    ESP_LOGI(TAG, "set_mode() called — current mode='%s'", sel->current_option().c_str());
     this->mode_ = sel;
 
     // Convert to enum
-    if (sel->state == "Off") this->power_mode_ = POWER_OFF;
-    else if (sel->state == "On") this->power_mode_ = POWER_ON;
-    else if (sel->state == "Auto") this->power_mode_ = POWER_AUTO;
-    else if (sel->state == "Manual") this->power_mode_ = POWER_MANUAL;
+    if (sel->current_option() == "Off") this->power_mode_ = POWER_OFF;
+    else if (sel->current_option() == "On") this->power_mode_ = POWER_ON;
+    else if (sel->current_option() == "Auto") this->power_mode_ = POWER_AUTO;
+    else if (sel->current_option() == "Manual") this->power_mode_ = POWER_MANUAL;
 }
 
 void MyComponent::set_clock(GPIOPin *pin, int raw_pin) {
